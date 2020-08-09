@@ -14,22 +14,14 @@
     <script>
         //Probamos el cuadro de diálogo ALERT
         let nombre = "Manolo";
-        alert("Tu nombre es... " + nombre);
 
-
-        //Este bucle es una prueba acerca de qué pasaría 
-        //si lo hiciera 10 veces. Es a cuenta del mensaje de advertencia
-        //que aparece con estos cuadros de diálogo. Al parecer se usa
-        //para evitar un colapsamiento del pc con miles de ventanas por
-        //parte de algún programador malintencionado.
-        /*let i = 0;
-        for (nombre = "Manu"; i <= 10; ++i) {*/
         alert(`Tu nombre es... ${nombre}`);
-        //}
+
         //Probamos el cuadro de diálogo CONFIRM
         let resultado = confirm("¿Aceptas  nuestras condiciones?");
         if (resultado) alert("Aceptado!!!")
         else alert("Po no aceptado");
+
         //Probamos el cuadro de diálogo PROMPT
         resultado = prompt("Escribe tu verdadero nombre");
         alert(`Tu verdadero nombre es... ${resultado}`);
