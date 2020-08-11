@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode</title>
+    <style>
+        table {
+            border: 2px solid rgba(58, 6, 107, 0.808);
+            border-collapse: collapse;
+            width: "100%";
+            margin: 0 auto;
+        }
+        
+        td,
+        th {
+            border: 1px solid black;
+            text-align: center;
+            width: 5%;
+        }
+        
+        th {
+            background-color: lightgray;
+        }
+        
+        h1 {
+            font-family: sans-serif;
+            text-align: center;
+            border-bottom: 1px solid rgba(140, 0, 255, 0.493);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const total = 10000;
+        const simbolosPorFila = 10;
+        let caracterUnicode = 1;
+
+        document.write(`<h1>Tabla de caracteres Unicode</h1>`);
+        document.write(`<table border="4">`);
+
+        for (let filas = 1; filas <= total / simbolosPorFila; ++filas) {
+            document.write("<tr>");
+            for (let columnas = 1; columnas <= simbolosPorFila; ++columnas, ++caracterUnicode) {
+                // &# seguido de un número nos mostrará el carácter unicode
+                document.write(`<th>${caracterUnicode}</th>`);
+                document.write(`<td>&#${caracterUnicode}</td>`);
+
+            }
+            document.write("</tr>");
+        }
+        document.write(`</table>`);
+    </script>
+
+</body>
+
+</html>

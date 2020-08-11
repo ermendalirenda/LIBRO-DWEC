@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadros aleatorios</title>
+    <style>
+        div {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script>
+        //2000 cuadrados de colores aleatorios y posiciones aleatorias de 50x50 píxeles
+
+        //Los colores son aleatorios.
+        let rojo;
+        let verde;
+        let azul;
+
+        //La posición será aleatoria
+        let arriba;
+        let izquierda;
+
+        const totalCuadrados = 2000;
+
+        for (let i = 1; i <= totalCuadrados; ++i) {
+
+            rojo = parseInt(Math.random() * 255);
+            console.log(`rojo: ${rojo}`);
+            verde = parseInt(Math.random() * 255);
+            console.log(`verde: ${verde}`);
+            azul = parseInt(Math.random() * 255);
+            console.log(`azul: ${azul}`);
+
+            //En lugar de ser un valor absoluto cogemos un tanto por ciento del total de la 
+            //anchura y altura de la ventana del navegador.
+            arriba = parseInt(Math.random() * 100) + "%";
+            izquierda = parseInt(Math.random() * 100) + "%";
+
+            document.write(`<div  style="top:${arriba};left:${izquierda};background-color: 
+            rgb(${rojo},${verde},${azul})"></div>`);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triángulo 2</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <script src="js/script.js"></script>
+    <script>
+        let n = parseInt(prompt("Introduce un número:")); //Si el usuario introduce un 10, estaremos hablando
+        //de 20 posiciones, si contamos con el espacio después del asterisco.
+
+        for (let i = 1; i <= n; ++i) {
+            for (let k = 1; k <= n - i; ++k) {
+                document.write("&nbsp;");
+            }
+
+            for (let j = 1; j <= i; ++j) {
+                document.write("* "); //Este espacio después del asterisco es la clave de que funcione
+            }
+            document.write("<br>");
+        }
+    </script>
+</body>
+
+</html>

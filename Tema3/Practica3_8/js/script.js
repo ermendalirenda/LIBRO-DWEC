@@ -1,0 +1,1 @@
+console.log("Esto he preferido hacerlo sin fichero externo ya que los tres programas son muy parecidos.");
