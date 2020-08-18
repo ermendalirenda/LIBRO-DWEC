@@ -22,6 +22,164 @@
         //Los barcos no se pueden solapar ni tocar y se pueden dibujar tanto horizontal como en vertical.
         //los barcos se situarán aleatoriamente en el tablero de forma automática.
 
+        //Para no copiar tanto vamos a hacer solo el portaviones.
+
+        const TAM_COLUMNAS = 10;
+        const TAM_FILAS = 10;
+
+        const TAM_PORTAVIONES = 4;
+        const N_PORTAVIONES = 2;
+        const TAM_ACORAZADO = 3;
+        const N_ACORAZADOS = 3;
+        const TAM_DESTRUCTOR = 2;
+        const N_DESTRUCTORES = 3;
+        const TAM_FRAGATA = 1;
+        const N_FRAGATAS = 2;
+
+        let cont;
+        let fila;
+        let col;
+
+        var tablero = new Array(TAM_FILAS);
+
+        //Iniciamos el tablero
+        for (let i = 0; i < TAM_FILAS; i++) {
+            tablero[i] = new Array(TAM_COLUMNAS);
+            for (let j = 0; j < TAM_COLUMNAS; j++) {
+                tablero[i][j] = false;
+            }
+        }
+
+        //************* Colocamos el portaviones ****************
+
+        cont = 0; //Para el numero de barcos
+        while (cont < N_PORTAVIONES) {
+            //Calculo posición aleatoria. K CRACK! NO SE OCURRIÓ!!
+            let horizontal = parseInt(Math.random() * 2);
+            console.log("Sentido del portaviones: " + horizontal);
+
+            //dibujo de portaviones en horizontal
+
+            if (horizontal) {
+                fila = parseInt(Math.random() * TAM_FILAS);
+                col = parseInt(Math.random() * (TAM_COLUMNAS - TAM_PORTAVIONES + 1));
+                console.log("Portaviones nº" + (cont + 1) + " -> Fila: " + (fila + 1) + " Columna: " + (col + 1));
+
+                //Comprobación de que en las casillas adyacentes no hay nada
+                //LO QU EESTAMOS HACIENDO ES: 1)COMPRUEBO QUE NO HAY NINGÚN BARCO ADYACENTE A LA PRIMERA CASILLA
+                //DEL PORTAVIONES. 2)COMPRUEBO CON LA SIGUIENTE CASILLA DEL PORTAVIONES. 3)uNA VEZ TERMINADA
+                //LA COMPROBACIÓN DIBUJO EL PORTAVIONES.
+
+                let ocupada = false;
+                let cont2 = 0; //La usamos para contar las casillas que ocuparía el barco
+                //Comprobación de las propias casillas ocupadas  y las de arriba y debajo
+
+                //Con que una de las opciones nos salga ocupada tendremos que buscar otra vez
+
+                while (ocupada == false && cont2 < TAM_PORTAVIONES) {
+                    //comprobación de casilla y la de arriba y abajo
+                    if (tablero[fila][col + cont2]) ocupada = true; //La casilla del portaviones ocupa la casilla de otro barco?
+                    else if (fila > 0 && tablero[fila - 1][col + cont2]) ocupada = true; //La casilla justo encima. Si estamos en el borde
+                    //superior del tablero no se hace nada.
+                    else if (fila < TAM_FILAS - 1 && tablero[fila + 1][col + cont2]) ocupada = true; //La casilla justo debajo.Si estamos en 
+                    //el borde inferior del tablero no se hace nada.
+                    cont2++;
+                }
+                if (ocupada == false) {
+                    //comprobamos las celdas a la izquierda del portaviones
+                    if (col > 0) { //si no estamos pegados a la pared de la izquierda
+                        if (tablero[fila][col - 1]) ocupada = true;
+                        else if (fila > 0 && tablero[fila - 1][col - 1]) ocupada = true; //LAS ESQUINAS HORRIBLE SUPERIOR IZQUIERDA
+                        else if (fila < TAM_FILAS - 1 && tablero[fila + 1][col - 1]) ocupada = true; //ESQUINA INFERIOR IZQUIERDA
+                    }
+
+                    if (ocupada == false) {
+                        //Comprobamos las celdas a la derecha del portaviones
+                        if (col + TAM_PORTAVIONES < TAM_COLUMNAS) {
+                            if (tablero[fila][col + TAM_PORTAVIONES]) ocupada = true; //Casilla a la derecha de la última casilla del portaviones
+                            else if (fila > 0 && tablero[fila - 1][col + TAM_PORTAVIONES]) ocupada = true; //Esquina superior derecha
+                            else if (fila < TAM_FILAS - 1 && tablero[fila + 1][col + TAM_PORTAVIONES]) ocupada = true; //Esquina inferior derecha
+                        }
+                    }
+                }
+                if (ocupada == false) {
+                    //dibujo del portaviones
+
+                    for (let i = 0; i < TAM_PORTAVIONES; i++) {
+                        tablero[fila][col + i] = true;
+                    }
+                    cont++; //Hacemos 2 portaviones
+                }
+
+            } else { //Dibujo de portaviones en vertical
+                fila = parseInt(Math.random() * (TAM_FILAS - TAM_PORTAVIONES + 1));
+                col = parseInt(Math.random() * TAM_COLUMNAS);
+                console.log("Portaviones nº" + (cont + 1) + " -> Fila: " + (fila + 1) + " Columna: " + (col + 1));
+
+                //comprobación de que en la casilla y adyacentes no hay nada
+
+                let ocupada = false;
+                let cont2 = 0;
+
+                //Comprobación de las propias celdas y las de su izquierda y derecha
+
+                while (ocupada == false && cont2 < TAM_PORTAVIONES) {
+                    //comprobación de la casilla y las de su izqueirda y derecha
+                    if (tablero[fila + cont2][col]) ocupada = true;
+                    else if (col > 0 && tablero[fila + cont2][col - 1]) ocupada = true;
+                    else if (col < TAM_COLUMNAS - 1 && tablero[fila + cont2][col + 1]) ocupada = true;
+                    cont2++;
+                    console.log("ocupado == " + ocupada);
+                }
+                if (ocupada == false) {
+                    //Comprobamos las celdas arriba y abajo del portaviones
+                    if (fila > 0) {
+                        if (tablero[fila - 1][col]) ocupada = true;
+                        else if (col > 0 && tablero[fila - 1][col - 1]) ocupada = true;
+                        else if (col < TAM_COLUMNAS - 1 && tablero[fila - 1][col + 1]) ocupada = true;
+                        console.log("ocupado == " + ocupada);
+                    }
+                    if (ocupada == false) {
+
+                        if (fila + TAM_PORTAVIONES < TAM_FILAS) {
+                            if (tablero[fila + TAM_PORTAVIONES][col]) ocupada = true;
+                            else if (col > 0 && tablero[fila + TAM_PORTAVIONES][col - 1]) ocupada = true;
+                            else if (col < TAM_COLUMNAS - 1 && tablero[fila + TAM_PORTAVIONES][col + 1]) ocupada = true;
+                            console.log("ocupado == " + ocupada);
+                        }
+                    }
+                }
+                if (ocupada == false) {
+                    //dibujo del portaviones
+
+                    for (let i = 0; i < TAM_PORTAVIONES; i++) {
+                        tablero[fila + i][col] = true;
+                    }
+                    cont++; //Hacemos 2 portaviones
+                }
+            } //Fin del else
+        } //Fin del while
+
+        //Dibujo el tablero
+        document.write("<table style='margin:auto' width='60%' border='3'>");
+        for (const t of tablero) {
+            document.write("<tr>");
+            for (const i of t) {
+                document.write("<td width='40px' bgcolor='");
+
+                if (i) //Si el contenido es true estamos ante un barco
+                    document.write("black");
+                else //Si el contenido es false será agua
+                    document.write("cyan");
+
+                document.write("'>&nbsp;</td>");
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+
+
         /*
         //NI PUTA IDEA... probaré con el método civilization 1P4,3A3,3D2, 2F1
 //No ha estado del todo mal, creo que iba bien encaminado pero no puede ser tan complicado.
