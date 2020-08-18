@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado polialfabético</title>
+</head>
+
+<body>
+    <script>
+        let mensaje = prompt("Introduce el texto a cifrar:");
+        let clave = prompt("Introduce una clave formada por números:");
+
+        console.log(`La longitud de la clave es... ${clave.length}`);
+        let longitud = clave.length; //Si no lo hago así no detectará el valor de clave.length en el if
+        console.log(`El valor de la variable Longitud es ${longitud}`);
+
+        let i = 0; //Con esta variable llevamos el control de los valores de la clave.
+
+        for (let letra of mensaje) {
+            console.log(`i vale ${i} y la letra vale ${letra}`);
+            let cifra = letra.charCodeAt(0) + parseInt(clave[i]);
+            document.write(String.fromCharCode(cifra));
+            console.log(cifra);
+
+            i++;
+            if (i == longitud) i = 0;
+
+        }
+
+
+
+
+
+        /* //Con i recorremos la clave, con j recorremos el mensaje.
+
+         for (let i = 0, j = 0; i < clave.length && j < mensaje.length; ++i, ++j) {
+             valorUMensaje = mensaje.charCodeAt(j); //Cogemos el valor unicode de un carácter del mensaje.
+             //Recuerda que lo obtienes en decimal. Si lo quieres buscar en una tabla unicode
+             //deberás pasarlo antes a hexadecimal.
+             console.log(`El valor uniC de la posición ${j} del mensaje es ${valorUMensaje}`);
+
+             valorUClave = parseInt(clave[i]); //Cogemos el valor numérico de una cifra de la clave
+             document.write(`${String.fromCharCode(valorUClave+valorUMensaje)}`);
+
+             if (i == clave.length - 1) i = -1; //Si aún no hemos acabado, volvemos a leer la clave 
+             //desde el principio. Lo ponemos a -1 para que cuando se le aplique el ++i vuelva a 0.
+
+         }*/
+    </script>
+</body>
+
+</html>

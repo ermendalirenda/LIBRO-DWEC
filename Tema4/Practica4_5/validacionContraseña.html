@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de contraseña</title>
+</head>
+
+<body>
+    <script>
+        //Versión del libro, al tío se le olvidó comprobar que hubiera cifras en el nombre.
+        let nombre, contraseña;
+
+        //centinela para saber si el usuario cancela un cuadro
+        let seguir = true;
+
+        //centinela que avisa de la corrección del nombre
+        let nombreOK;
+
+        //centinela que avisa de la corrección de la contraseña
+        let contraseñaOK;
+
+        //centinelas de cada premisa para la contraseña
+        let hayMinúsculas = false;
+        let hayMayúsculas = false;
+        let hayNúmeros = false;
+        let hayOtros = false;
+
+        //Strings con las letras preparadas
+        const minusculas = "aáàbcçdeèéghiíìjklmnñoóòpqrstuúùvwxyz";
+        const numeros = "0123456789";
+
+        //peticion de nombre de usuario
+        do {
+            nombre = prompt("Escriba su nombre de usuario deseado");
+            if (nombre == null) seguir = false; //se ha pulsado el botón Cancelar
+            if (seguir) {
+                //validación del usuario
+                nombreOK = true; //lo suponemos cierto, si los valores nos on correctos cambiará.
+                let i = 0;
+                while (nombreOK && i < nombre.length) {
+                    let caracter = nombre.charAt(i);
+                    //validamos si alguna letra minúscula del español
+                    if (minusculas.indexOf(caracter) == -1) {
+                        //no se encontró el carácter en las minúsculas
+                        nombreOK = false;
+                        alert("El usuario es incorrecto\n" +
+                            "Solo se admiten minúscuas");
+                    }
+                    i++
+                }
+            }
+        } while (seguir == true && nombreOK == false);
+
+        if (seguir) { //El nombre es correcto así que continuamos.
+            do {
+                hayMinúsuculas = false;
+                hayMayúsculas = false;
+                hayNúmeros = false;
+                hayOtros = false;
+
+                contraseña = prompt("Escriba su contraseña deseada");
+                if (contraseña == null) seguir = false;
+                if (seguir) {
+                    //validación de contraseña
+                    contraseñaOK = true;
+                    let i = 0;
+                    while (contraseñaOK && i < contraseña.length) {
+                        let caracter = contraseña.charAt(i);
+                        //Validamos si hay alguna letra minúscula
+                        if (minusculas.indexOf(caracter) != -1)
+                            hayMinúsculas = true;
+                        //validamos si hay alguna letra mayúscula
+                        else if (minusculas.toUpperCase().indexOf(caracter) != -1)
+                            hayMayúsculas = true;
+                        //validamos si hay algún número
+                        else if (números.indexOf(caracter) != -1)
+                            hayNúmeros = true;
+                        else //Es otro tipo de carácter
+                            hayOtros.true;
+                    } //fin del while
+                    i++;
+                }
+
+                contraseñaOK = (hayMinúsculas == true && hayMayúsculas == true && hayNúmeros == true && hayOtros == true);
+                //Si todo lo anterior es true, contraseñaOK también será true.
+                if (contraseñaOK == false) {
+                    alert("La contraseña es incorrecta\n" +
+                        "Debe contener minúsculas, mayúsculas," +
+                        " números y otros símbolos");
+                }
+
+                //Este es un código de comprobación
+                //es interesante para comprobar
+                //como va la validación por consola
+
+                console.log("Mayúsculas:" + hayMayúsculas +
+                    "Minúsculas:" + hayMinúsculas +
+                    ", Números:" + hayNúmeros +
+                    ", Símbolos:" + hayOtros);
+
+            } while (seguir == true && contraseñaOK == false);
+        }
+        //mensajes finales
+        if (seguir == true) {
+            document.write("<p>Datos almacenados</p>");
+        } else {
+            document.write("<p>El usuario canceló la operación</p>");
+        }
+
+
+
+        /*ESTE ES MI CÓDIGO Y FUNCIONA KTKGAS ON THE BRAGAS, AUNQUE...
+        
+        let login;
+        let password;
+
+        let loginCorrecto;
+        let passwCorrecto = false;
+        let cancelar = false;
+
+        let passwMin = false; //Estos centinelas nos ayudarán a comprobar el password.
+        let passwMay = false;
+        let passwNum = false;
+        let passwNoAlfanum = false;
+
+        const minusculas = "abcdefghijklmnñopqrstuvwxyz";
+        const numeros = "0123456789";
+
+        do {
+            login = prompt("Introduzca nombre de usuario. Deberá estar compuesto por letras y números:");
+            if (login) { //Si es distinto de null es que no le ha dado a Cancelar.
+                //Comprobamos que el nombre del usuario está formado por letras minúsculas y números
+
+                loginCorrecto = true; //Partamos de la suposición de un login correcto
+                for (let i = 0, car; i < login.length && loginCorrecto; ++i) {
+                    car = login[i]; //caracter a caracter hacemos la comprobación
+                    console.log("comprobamos el valor de " + car);
+                    //Vemos si se encuentra en los dos strings
+                    if (minusculas.indexOf(car) == -1 && numeros.indexOf(car) == -1) {
+                        alert(`Parada en ${car}. Login incorrecto. Vuelva a introducirlo.`);
+                        loginCorrecto = false; //Nos salimos del bucle
+                    }
+                }
+                if (loginCorrecto) console.log("El login es correcto");
+
+            } else cancelar = true;
+
+        } while (!loginCorrecto && !cancelar); //se repetirá mientras el login no sea correcto
+        //y no se pulse el botón Cancelar.
+        //Comprobamos  la clave
+        if (!cancelar) { //Si llegamos hasta aquí es porque el proceso de entrada de datos sigue.
+            do {
+                password = prompt("Introduzca contraseña, deberá tener al menos: 1 letra minúscula, 1 letra mayúscula, 1 número y 1 carácter no alfanumérico:");
+
+                if (password) { //Si es distinto de null es que no le ha dado a Cancelar.
+                    //Comprobamos que el password contenga los elementos exigidos
+                    for (let i = 0, car; i < password.length; ++i) {
+                        car = password[i]; //caracter a caracter hacemos la comprobación
+                        //Empezamos las comprobaciones
+                        if (minusculas.indexOf(car) >= 0) {
+                            passwMin = true;
+                            console.log(`${car} es minúscula`);
+                        } else if (minusculas.toUpperCase().indexOf(car) >= 0) {
+                            passwMay = true;
+                            console.log(`${car} es mayúscula`);
+                        } else if (numeros.indexOf(car) >= 0) {
+                            passwNum = true;
+                            console.log(`${car} es numérico`);
+                        } else {
+                            passwNoAlfanum = true; //Lo que queda es que sea no alfanumérico.
+                            console.log(`${car} es no alfanumérico`);
+                        }
+                    }
+                    if (passwMin && passwMay && passwNum && passwNoAlfanum)
+                        passwCorrecto = true;
+                    else
+                        alert("La clave no es correcta. Vuelva a introducirla.");
+                } else cancelar = true; //Hemos pulsado cancelar
+
+            } while (!passwCorrecto && !cancelar);
+        }
+
+        if (cancelar)
+            alert("Aplicación cancelada por el usuario");
+        else
+            alert(`¡Datos introducidos correctamente! Su login es ${login} y su contraseña es ${password}`);
+    */
+    </script>
+</body>
+
+</html>

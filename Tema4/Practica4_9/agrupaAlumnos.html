@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrupamos alumnos</title>
+</head>
+
+<body>
+    <script>
+        /*Aplicación web que lea nombres de alumnos. Vale cualquier texto.
+                                                                                                                                        Termina con la palabra "fin".*/
+        //No se pueden repetir los nombres, de ser así se avisará y se pedirá otro.
+        //La aplicación agrupa los usuarios de 3 en 3 en grupos aleatorios.
+        //Si el número de alumnos no es múltiplo d 3 (menor que 3 o.p.), los alumnos sobrantes se 
+        //mueven uno a uno de forma aleatoria en los grupos que indiquemos.
+        //Ejemplo:
+        // GRUPO1: adela, maite, javier; GRUPO2: pedro, itziar, leire, marco; 
+        //GRUPO3: josune, andres, xuso; GRUPO4: jordi, antón, neus, marta
+        //En el ejemplo hay 2 grupos de 4 alumnos al haber más alumnos, es importane
+        //que los dos alumnos no se coloquen en el mismo grupo formando un grupo d 5.
+
+        //VERSIÓN DEL COLEGA. A VER SI ME ENTERO DE QUÉ VA EL ENUNCIADO
+
+        var array = [];
+        var texto;
+        const TAM_GRUPO = 3;
+        var grupo = []; //INICIO DEL ARRAY PRNCIPAL,
+        //LO PONGO CON VAR PARA QUE SE CONOZCA FUERA DE ESTE ÁMBITO
+        //LO ENTENDERÁS AL SER USADO PARA RECORRER EL ARRAY. ABAJO
+        //DEL TODO.
+
+        do { //Llenamos el array con nombres de alumnos
+            texto = prompt("Escribe el nombre del siguiente alumno\n" +
+                "(pulse Aceptar sin indicar alumno alguno, para acabar)");
+            //console.log("El nombre es... " + texto);
+
+            if (texto != null && texto.length > 0) { //Si no pulsamos cancelar ni Aceptar con campo vacío
+                //console.log("entro en el if");
+                if (array.includes(texto))
+                    alert("repe, escribe otro");
+                else {
+                    array.push(texto);
+                    console.log(array);
+                }
+            }
+        } while (texto != null && texto.length > 0);
+
+        if (texto == null) { //En caso de pulsar botón Cancelar.
+            document.write("<p>Se canceló la operación</p>");
+        } else {
+            //BARAJAMOS EL ARRAY
+            //movimiento aleatorio del array, realizamos
+            //intercambios de elemntos, el número de intercambios será
+            //el doble del tamaño del array (??¿¿dónde está eso??¿¿ o.p.)
+            let n1, n2;
+            for (let i = 1; i <= array.length; i++) {
+                n1 = parseInt(Math.random() * array.length);
+                n2 = parseInt(Math.random() * array.length);
+                //intercambiamos elementos
+                [array[n1], array[n2]] = [array[n2], array[n1]];
+            }
+
+            //Cálculo del número de grupos dividiendo el total de alumnos por 3
+            let nGrupos = parseInt(array.length / TAM_GRUPO);
+
+
+            //Colocamos los grupos
+            //primero hacemos los grupos regulares de 3
+            //ACLAREMOS ESTO, QUEREMOS CREAR UN ARRAY DE ARRAYS (GRUPOS DE ALUMNOS)
+            //A PARTIR DEL ARRAY DE ALUMNOS BARAJADO:
+            //k ES EL CONTADOR DEL ARRAY DE ALUMNOS
+            //i ES EL CONTADOR DEL ARRAY PRINCIPAL (GRUPOS)
+            //j ES EL CONTADOR DEL ARRAY DENTRO DE CADA ELEMENTO DEL ARRAY PRINCIPAL (ALUMNOS) 
+
+            for (let i = 0, k = 0; i < nGrupos; i++) {
+                grupo[i] = []; //ARRAY DENTRO DE CADA ELEMENTO DEL ARRAY PRINCIPAL
+                for (let j = 0; j < TAM_GRUPO; j++, k++) {
+                    grupo[i][j] = array[k];
+                }
+            }
+
+            //si hay alumnos sobrantes, les colocamos de forma aleatoria
+            //en el grupo
+            let grupoAlea;
+            //SI HAY 8 ALUMNOS, SE HABRÁN FORMADO 2 GRUPOS DE 3 ALUMNOS. 
+            //LA SIGUIENTE LÍNEA HACE QUE COLOQUEMOS LOS 2 ALUMNOS SOBRANTES.
+            //POR ELLO, NOS SITÚA EN EL ALUMNO Nº7 (TAM_GRUPO*NGRUPOS)DEL ARRAY DE ALUMNOS
+            for (let i = TAM_GRUPO * nGrupos; i < array.length; i++) {
+                grupoAlea = parseInt(Math.random() * nGrupos); //ESCOGEMOS UN GRUPO AL AZAR
+                if (grupo[grupoAlea].length <= TAM_GRUPO) { //SI TIENE MENOS de/o 3 ALUMNOS
+                    //en ese grupo cabe uno más
+                    grupo[grupoAlea][TAM_GRUPO] = array[i]; //O.P. FUNCIONARÍA MEJOR GRUPOALEA.LENGTH EN LUGAR DE TAM_GRUPO
+                } else
+                    i--; // truco para que se vuelva a calcular otro número aleatorio
+                //DE NO HACERLO ASÍ EL PROGRAMA NO "COLOCARÍA" AL ALUMNO ACTUAL
+                //EN NINGÚN GRUPO Y PASARÍA AL SIGUIENTE ALUMNO.
+            }
+        } //FIN DEL ELSE
+
+        //Mostrar los grupos
+        //ASÍ SE RECORRE UN ARRAY DE ARRAYS
+        let cont = 1;
+        for (let g of grupo) {
+            document.write(`<p><strong>Grupo ${cont}: </strong> `);
+            for (let persona of g) {
+                document.write(persona + " ");
+            }
+            cont++;
+            document.write("</p>");
+        }
+
+
+
+        /*Me rindo, me estoy liando y lo pero es que ni siquiera sé qué es lo que el tío quiere que hagamos.
+        
+        //Usaremos mapas. El campo clave será el número de grupo y el campo valor será un array de cadena de caracteres.
+
+        let fin = false;
+        let cancelar = false;
+        let clave = 1;
+        let repe = false;
+        var alumno;
+        let completo;
+
+        const N_GRUPOS = 5;
+        const N_TAM = 3; //Tamaño deseable de cada array
+        const alumnos = new Map();
+        const grupo1 = new Array();
+        const grupo2 = new Array();
+        const grupo3 = new Array();
+        const grupo4 = new Array();
+        const grupo5 = new Array();
+
+        //Inicializamos el mapa para soportar 5 arrays
+        alumnos.set(1, grupo1).set(2, grupo2).set(3, grupo3).set(4, grupo4).set(5, grupo5);
+        console.log("voy a entrar en el bucle.");
+        //Rellenamos el mapa
+        do {
+            //console.log("he entrado en el bucle do.");
+            alumno = prompt("Introduzca nombre de alumno:");
+            //console.log("nombre de alumno introducido: " + alumno);
+            //¿Está repe?
+            if (alumno != null) {
+                let valores = alumnos.values(); //Miramos las claves para recorrerlas y buscar entre los arrays (grupos)
+
+                //Comprobamos que no esté repetido
+
+                for (let v of valores) {
+                    // console.log("He entrado en el bucle for(let v of valores)");
+                    //console.log("miramos el array... " + v); //En la primera vuelta estará vacío
+                    if (v.includes(alumno)) { //Es decir, si lo hemos encontrado
+
+                        repe = true;
+                        alert("Nombre de alumno repetido. Por favor, introduzca otro.");
+                        break; //ejem...
+                    }
+                }
+
+                //En caso de que no esté repetido, lo añadimos.
+
+                if (!repe) {
+                    let gruposCompletos = 0; //Si hay 5 grupos completos el programa acaba.
+                    let valores = alumnos.values();
+
+                    for (let v of valores) { //Vemos si ya está lleno.
+                        if (v.length == N_TAM) ++gruposCompletos;
+                    }
+                    if (alumno != "fin" && (gruposCompletos < N_GRUPOS)) { //Es decir, si hay sitio
+
+                        console.log("hemos introducido... " + alumno);
+                        console.log("grupos completos: " + gruposCompletos);
+
+                        //en un grupo aleatorio del 1 al 5 vamos introduciendo elementos en cada array.
+
+                        do {
+                            completo = false;
+                            let posGr = parseInt((Math.random() * 5) + 1); //un grupo al azar
+                            console.log("lo meteremos en el grupo", posGr);
+                            if (alumnos.get(posGr).length < N_TAM) //Si hay espacio
+                                alumnos.get(posGr).push(alumno);
+                            else completo = true;
+                        } while (completo);
+
+                    } else if (alumno == "fin")
+                        fin = true;
+                    else
+                        alert("TODOS LOS GRUPOS ESTÁN COMPLETOS");
+                }
+                console.log(alumnos);
+                repe = false;
+            } else cancelar = true;
+        } while (!cancelar && !fin && !completo);
+
+        if (cancelar == null) alert("Aplicación cancelada por intervención del usuario.");
+        else {
+            //Comprobamos el estado de nuestra tabla
+            console.log(alumnos);
+        }*/
+    </script>
+</body>
+
+</html>

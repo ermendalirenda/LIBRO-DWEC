@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos con for_in y for_of</title>
+</head>
+
+<body>
+    <script>
+        let cadena = "El perro de san Roque no tiene rabo porque Ramón Ramírez se lo ha cortado.";
+
+        for (let i in cadena)
+            console.log(`Posición ${i}... ${cadena[i]}`);
+
+        for (let i of cadena)
+            console.log(`Carácter... ${i}`);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pruebaTextos</title>
+</head>
+
+<body>
+    <script>
+        //Probamos cosillas de textos
+        let texto1 = "un cucudrulu";
+        let texto2 = texto1; //así hacemos copias de texto
+
+        do {
+            textoFinal = texto1;
+            texto1 = texto1.replace("u", "k");
+            console.log(`texto1 -> ${texto1} textoFinal -> ${textoFinal}`);
+        } while (textoFinal != texto1); //si son iguales eso es porque ya se realizaro todos los cambios posibles
+        console.log(texto2);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotería primitiva</title>
+</head>
+
+<body>
+    <script>
+        // Creamos una aplicación web que muestre cincuenta combinaciones para jugar a la 
+        //lotería primitiva. Las combinaciones son seis números de 1 al 45, pero hay que tener
+        //en cuenta que no se pueden repetir los números.
+
+        /*PROPUESTO EN EL LIBRO... se basa en remezclar todos los elementos 50 veces (no lo confundas
+        con las 50 combinaciones) y coger los 6 primeros elementos. No creo que funcione correctamente.*/
+
+        //constantes, buena práctica por si queremos
+        //facilitar el mantenimiento del código.
+
+        const N_COMBINACIONES = 50;
+        const N_INTERCAMBIOS = 50;
+        const RANGO_TOTAL = 49;
+        const RANGO_SOLUCION = 6;
+        let longitud; //Si no lo haces así, no funciona el .lenght
+
+        //array que contendrá los números de la primitiva.
+        const primitiva = [];
+        //relleno del array original
+        for (let i = 0; i < RANGO_TOTAL; i++) {
+            //el indice 0 contendrá el número 1
+            //el 1 el 2 y así sucesivamente hasta
+            //los 49 números
+            primitiva[i] = i + 1;
+        }
+
+        longitud = primitiva.length;
+        console.log("la longitud es... " + longitud);
+
+        //bucle principal, en cada vuelta se 
+        //muestra una combinación
+        for (let i = 1; i <= N_COMBINACIONES; i++) {
+            //barajeo del array
+            for (let j = 1; j <= N_INTERCAMBIOS; j++) {
+                //i1 e i2 toman un índice
+                //del array de forma aleatoria
+                let i1 = parseInt(Math.random() * longitud);
+                //console.log(i1 + " ");
+                let i2 = parseInt(Math.random() * longitud);
+                //console.log(i2 + " ");
+
+                //intercambio de los valores de dos
+                //elementos aleatorios
+                console.log(`${i1} lo cambiamos por ${i2}`);
+                [primitiva[i1], primitiva[i2]] = [primitiva[i2], primitiva[i1]];
+            }
+            document.write(`<h2>Combinación número ${i}</h2>`);
+            //Mostrar seis primeros elementos del array
+            document.write("<p>");
+            for (let j = 0; j < RANGO_SOLUCION; j++) {
+                document.write(`Posición ${j}, Valor ${primitiva[j]} - `);
+            }
+            document.write("</p>");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        /*         ESTE FUE EL QUE HICE, FUNCIONA KTKGAS        
+        for (let combinaciones = 1; combinaciones <= 50; ++combinaciones) {
+            const numeros = new Array(0, 0, 0, 0, 0, 0);
+            let tamaño = numeros.length;
+            //console.log(`El tamaño del array es... ${tamaño}`);
+
+            for (let i = 0; i < tamaño; ++i) {
+                let valor = parseInt(Math.random() * 45) + 1;
+                //numeros[i] = valor;
+                if (numeros.indexOf(valor) == -1)
+                    numeros[i] = valor; //Si no está repetido lo incluimos
+                else {
+                    //Ha habido una repetición de número.
+                    //console.log(`Se iba a repetir el número ${valor}`);
+                    --i;
+                }
+            } //En otro caso no dejamos que el contador siga hasta que encontremos uno no repetido.
+
+            //Recorremos el array para obtener los números
+            console.log(`Combinación nº ${combinaciones}: ${numeros}`);
+
+        }*/
+    </script>
+</body>
+
+</html>

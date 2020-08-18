@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hundir la flota</title>
+    <style>
+        h1 {
+            font-family: sans-serif;
+            text-align: center;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //Crear un programa que simule en pantalla el tablero de juego Hundir la flota.
+        //Dibujará aleatoriamente 1 barco de tamaño 4, tres tamaño 3, tres tamaño 2, y dos tamaño 1
+        //El tablero será de 10x10
+        //Los barcos no se pueden solapar ni tocar y se pueden dibujar tanto horizontal como en vertical.
+        //los barcos se situarán aleatoriamente en el tablero de forma automática.
+
+        /*
+        //NI PUTA IDEA... probaré con el método civilization 1P4,3A3,3D2, 2F1
+//No ha estado del todo mal, creo que iba bien encaminado pero no puede ser tan complicado.
+        const N_FILAS = 10;
+        const N_COL = 10;
+
+        //Tomamos nota de los tamaños de los barcos
+        const N_PORTA = 1;
+        const TAM_PORTA = 4;
+        const N_ACO = 3;
+        const TAM_ACO = 3;
+        const N_DES = 3;
+        const TAM_DES = 2;
+        const N_FRA = 2;
+        const TAM_FRA = 1;
+
+        //creamos el tablero de 10x10, es decir 10 filas de arrays de 10 elementos
+        //Primero creamos los arrays
+        const tablero = new Array();
+
+        for (let i = 0; i < N_FILAS; ++i) {
+            tablero[i] = new Array();
+        }
+
+        //console.log("El tablero recién creado es... " + tablero);
+        //Segundo recorremos el tablero
+
+        for (let i = 0; i < N_FILAS; ++i) {
+            for (let j = 0; j < N_COL; ++j) {
+                tablero[i][j] = "l";
+            }
+        }
+
+        //Vemos como va quedando
+
+        for (let i = 0; i < N_FILAS; ++i) {
+            //console.log("El tablero inicializado es... " + tablero[i] + " ");
+        }
+
+        //Lo intentaremos barco a barco
+
+        //portaaviones
+        //horizontal o vertical? 
+        //Tal y como se gestionan los arrays de arrays visualízalo 
+        //como un array horizontal con arrays verticales.
+        //IMPORTANTE: la tabla html se forma al revés, más o menos la fila principal 
+        //del array pasa a ser columna principal en html
+
+        let sentido = parseInt(Math.random() * 2); //Si es 0 será horizontal, 1 vertical.
+        if (sentido == 0) { //Posición horizontal. escogemos una posición desde la primera hasta la sexta por ocupar 4 posiciones
+            let col = parseInt(Math.random() * N_COL);
+            let celda = parseInt(Math.random() * (N_FILAS - TAM_PORTA)); //entre la posicion 0 y la 5
+            console.log("La columna es " + col + "y la fila es " + celda);
+            for (let i = celda; i < celda + TAM_PORTA; ++i) {
+                tablero[col][i] = "p";
+            }
+
+        } else { //Sentido vertical == 1
+            let fila = parseInt(Math.random() * N_FILAS);
+            let celda = parseInt(Math.random() * (N_COL - TAM_PORTA));
+            console.log("La columna es " + celda + "y la fila es " + fila);
+            for (let i = celda; i < celda + TAM_PORTA; ++i) {
+                tablero[i][fila] = "p";
+            }
+        }
+
+        //Ahora toca hacer las casillas anexas, las marcaremos con la letra "z"
+        //Recorremos el tablero
+
+        for (let i = 0, j; i < N_COL - 1; ++i) {
+            for (j = 0; j < N_FILAS - 1; ++j) {
+                //Primero comprobamos que nos encontramos en una zona libre
+                if (tablero[i][j] == "l") {
+                    //Comprobamos la casilla que hay a su derecha
+                    if ("padf".indexOf(tablero[i + 1][j]) != -1) //Es decir, si hay una casilla con algún barco
+                        tablero[i][j] = "z"; //Pasa a ser zona anexa al barco.
+                    else if ("padf".indexOf(tablero[i][j + 1]) != -1) //Comprobamos la casilla que hay debajo.
+                    //Es decir, si hay alguna casilla con barco debajo de la actual
+                        tablero[i][j] = "z";
+                }
+            }
+            //La última casilla se nos quedó suelta, es la celda que está más abajo. Requiere un tratamiento diferente.
+            if (tablero[i][j] != "l" && "padf".indexOf(tablero[i + 1][j]) != -1)
+                tablero[i][j] = "z";
+        }
+
+        console.log("El tablero va quedando así... ");
+        console.log(tablero);
+
+        //¿Cómo iría quedando en html?
+        document.write("<h1>HUNDIR LA FLOTA</h1>");
+
+        document.write("<table style='margin:auto'>");
+        for (let fila of tablero) {
+            document.write("<tr>");
+            for (let celda of fila) {
+                if (celda == "l") document.write("<td width='50px' bgcolor='cyan'>&nbsp;</td>");
+                if (celda == "p") document.write("<td width='50px' bgcolor='brown'>&nbsp;</td>");
+                if (celda == "z") document.write("<td width='50px' bgcolor='blue'>&nbsp;</td>");
+            }
+            document.write("</tr>");
+        }
+
+        document.write("</table>");
+        */
+    </script>
+</body>
+
+</html>

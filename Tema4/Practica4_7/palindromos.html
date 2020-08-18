@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palíndromos</title>
+</head>
+
+<body>
+    <script>
+        //¿Es un palíndromo?
+        //Esta es la versión del autor del libro DWEC. En lugar de crear una cadena que contenga los caracteres
+        //de la cadena original, lo que hace es recorrer la cadena original desde el ppio y el final sin modificar.
+        //Tela. k crack.
+        //constante con los caracteres que no tendremos en cuenta
+        const CAR_PUNT = ",.;: ()[]{}-_¡!¿?/\"'`";
+        let texto = prompt("Escribe el texto para comprobar si es un palíndromo");
+
+        //Convertimos a minúsculas
+
+        texto = texto.toLocaleLowerCase("es");
+
+        //Compararemos la izquierda y la derecha para ver si tenemos el mismo carácter
+        let posIzda = 0;
+        let posDcha = texto.lenght - 1;
+        let palindromo = true; //indica si el texto es palíndromo o no.
+        let textoR = texto;
+
+        //quitamos las tildes
+        do {
+            texto = textoR; //para guardar el estado previo
+            textoR = textoR.replace("á", "a");
+            textoR = textoR.replace("á", "a");
+            textoR = textoR.replace("è", "e");
+            textoR = textoR.replace("é", "e");
+            textoR = textoR.replace("ì", "i");
+            textoR = textoR.replace("í", "i");
+            textoR = textoR.replace("ò", "o");
+            textoR = textoR.replace("ó", "o");
+            textoR = textoR.replace("ù", "u");
+            textoR = textoR.replace("ú", "u");
+            textoR = textoR.replace("ü", "u");
+        } while (texto != textoR);
+
+        texto = textoR;
+        //Comprobación
+        while (palindromo && (posIzda < posDcha)) { //A partir de la mitad ya no tiene senttido seguir
+            //saltamos los caracteres de puntuación al lado izquierdo
+            while (CAR_PUNT.indexOf(texto[posIzda]) != -1)
+                posIzda++;
+            //Lo mismo a la derecha
+            while (CAR_PUNT.indexOf(texto[posDcha]) != -1)
+                posDcha--;
+            if (posIzda < posDcha) {
+                palíndromo = (texto[posIzda] == texto[posDcha]);
+            }
+            posIzda++;
+            posDcha--;
+        }
+        if (palindromo) {
+            document.write("<h1>¡Es un palíndromo!</h1>");
+        } else {
+            document.write("<h1>No es un paíndromo</h1>");
+        }
+
+
+        /* FUNCIONA. AUNQUE CREO QUE LO HE REBUSCAO UN POCO.
+                //Vamos a recorrer el array desde los dos extremos.
+                let palindromo = true; //Empezamos suponiendo que es un palíndromo
+                let sentencia = prompt("Introduzca una frase y le diré si es un palíndromo:");
+
+                let long = sentencia.length;
+                console.log(`la longitud de la cadena ${sentencia} es... ${long}`);
+
+                //Le quitamos los caracteres especiales, para ello crearemos una cadena donde copiaremos 
+                //los caracteres sin contar dichos elementos.
+                //Para ello crearemos una cadena con todos los caracteres inválidos y comprobaremos que
+                //el carácter que queremos copiar no se encuentra ahí.
+                let estosNo = " ,.;-_¡!¿?\'\"";
+
+                let sentLimpia = "";
+                for (let i = 0; i < long; ++i) {
+                    let car = sentencia.charAt(i);
+                    if (estosNo.indexOf(car) == -1)
+                        sentLimpia = sentLimpia + sentencia.charAt(i);
+                }
+
+                //Lo paso todo a minúsculas para que pueda realizarse la comparación
+
+                sentLimpia = sentLimpia.toLocaleLowerCase();
+
+                //quitamos las tildes
+                sentLimpia = sentLimpia.replace("à", "a");
+                sentLimpia = sentLimpia.replace("á", "a");
+                sentLimpia = sentLimpia.replace("è", "e");
+                sentLimpia = sentLimpia.replace("é", "e");
+                sentLimpia = sentLimpia.replace("ì", "i");
+                sentLimpia = sentLimpia.replace("í", "i");
+                sentLimpia = sentLimpia.replace("ò", "o");
+                sentLimpia = sentLimpia.replace("ó", "o");
+                sentLimpia = sentLimpia.replace("ù", "u");
+                sentLimpia = sentLimpia.replace("ú", "u");
+                sentLimpia = sentLimpia.replace("ü", "u");
+
+                long = sentLimpia.length; //es la nueva longitud de la cadena sin caracteres especiales
+
+                console.log(`la nueva longitud de la cadena ${sentLimpia} es... ${long}`);
+                let i = 0; //Se me hizo un poco pesaíllo hacerlo con un For
+                let j = long - 1;
+                do {
+                    console.log(`${i} -> ${sentLimpia[i]}, ${j} -> ${sentLimpia[j]}`);
+                    if (sentLimpia.charAt(i) != sentLimpia.charAt(j))
+                        palindromo = false; //Con que un carácter no se cumpla ya No será unpalíndromo
+                    else {
+                        //console.log("llegué hasta aquí");
+                        ++i;
+                        --j;
+                    }
+                } while (palindromo && (i < long)); //Nos salimos en cuando no se cumpla o si se termina el array.
+
+                if (!palindromo) alert("NO ES UN PALÍNDROMO");
+                else
+                    alert("PO CLARO QUE ES UN PALÍNDROMO!!!");*/
+    </script>
+</body>
+
+</html>

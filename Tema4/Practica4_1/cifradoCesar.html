@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado César</title>
+</head>
+
+<body>
+    <script>
+        let valorUnicode; //Aquí almacenaremos el valor unicode de cada carácter
+        let nuevoValorUnicode; //Nuevo valor después de sumar la clave.
+        let texto = prompt(`Introduce texto:`);
+        let clave;
+
+        do {
+            clave = parseInt(prompt("Introduce clave (un número entero):"));
+            if (isNaN(Number(clave)))
+                alert("No has escrito un número");
+        } while (isNaN(Number(clave)));
+
+        document.write(`<p>El texto cifrado de \"${texto}\" es...</p>`);
+
+        for (let posicion in texto) {
+            //Las siguientes líneas tienen un motivo puramente didáctico.
+            valorUnicode = texto.charCodeAt(posicion); //Obtenemos valor Unicode
+            nuevoValorUnicode = valorUnicode + clave; //Nuevo valor
+            nuevoCarUnicode = String.fromCharCode(nuevoValorUnicode); //Nuevo carácter unicode
+
+            document.write(nuevoCarUnicode);
+
+            //Con esta línea traceamos el funcionamiento.
+            console.log(`La posición ${posicion} tiene el valor unicode: ${valorUnicode}, siendo 
+            carácter ${texto[posicion]}. Su nuevo valor Unicode será ${nuevoValorUnicode}, 
+            cuyo carácter es ${nuevoCarUnicode}`);
+        }
+    </script>
+</body>
+
+</html>

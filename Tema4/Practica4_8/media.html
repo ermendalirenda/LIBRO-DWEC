@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media de números</title>
+</head>
+
+<body>
+    <script>
+        //Pide números hasta que el usuario introduzca 0
+        //Al final indicará la media.
+        //Si no es un número se le pide de nuevo
+        //Si cancela cualquier cuadro de lectura, el programa termina y se indica con un mensaje sin mostrar
+        //la media
+
+        var array = [];
+        var numero;
+        var total = 0;
+        do {
+            numero = prompt("Escribe el siguiente número (0 para terminar");
+            if (numero != null) {
+                numero = Number(numero); //lo pasamos a numérico
+
+                if (!isNaN(numero)) {
+                    if (numero != 0) {
+                        //Si tenemos un número lo añadimos al array
+                        array.push(numero);
+                    }
+                } else {
+                    alert("No has escrito un número");
+                }
+            }
+        } while (numero != null && (isNaN(numero) || numero != 0));
+
+        if (numero == null) {
+            document.write("<p>El usuario canceló la operación</p>");
+        } else if (array.length > 0 && !isNaN(numero)) {
+            //recorremos el array para hacer el cálculo de la media
+            for (let n of array) {
+                total += n;
+            }
+            document.write(`<p>La media es ${total/array.length}</p>`);
+        }
+
+        /*//MIO. MENSAJES DE ERROR RAROS. PERO FUNCIONA.
+        let cancelar = false;
+        let n, num;
+
+
+        //Creamos nuestro array de números
+        const numeros = new Array();
+        let i = 0;
+        do {
+            n = prompt("Introduzca números. 0 para terminar");
+            num = parseInt(n); //Lo hago para que pueda funcionar la siguiente línea (null)
+
+            if (n == null) cancelar = true;
+            else if (isNaN(n))
+                alert("No ha introducido un número correcto. No se contará para la media.");
+            else if (num) {
+                numeros[i] = num; //En caso de que el número sea aceptado lo incluimos en nuestro array.
+                ++i;
+                console.log(numeros);
+            }
+        } while (num && !cancelar);
+
+        if (!cancelar) { //En el caso de que no se haya pulsado cancelar.
+            if (numeros[i] == 0) //Caso en que pulsemos 0 nada más empezar
+                document.write(`<p>La media es... 0</p>`);
+            else {
+                let tamaño = numeros.length;
+                console.log(`El tamaño del array es ${tamaño}`);
+                let suma = 0;
+                for (let i = 0; i < tamaño; ++i) {
+                    suma = suma + numeros[i]; //Sumamos todos los elementos del array
+                }
+                console.log("La suma es... " + suma);
+                let total = suma / tamaño;
+                document.write(`<p>La media es... ${total}</p>`);
+            }
+        } else
+            alert("Se ha cancelado la aplicación.");*/
+    </script>
+</body>
+
+</html>
