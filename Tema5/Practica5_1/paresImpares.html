@@ -5,10 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funcion de pares e impares</title>
+    <script src="js/par.js"></script>
 </head>
 
 <body>
     <script>
+        for (let i = 1; i <= 500; i++) {
+            let n = parseInt(Math.random() * 10000) + 1;
+            document.write(`<p>${n}, es ${par(n)}</p>`);
+        }
+
+
+
+
         //Crearemos una funcion que devuelva la palabra "par" si la enviamos un número par.
         //En caso contrario escribiría "impar"
         //Escribir en una página web 500 números aleatorios del 1 al 10000 y que
@@ -16,7 +25,7 @@
 
 
         /*El mío funciona bien, el tío lo ha enrevesado un poco metiendo la funcion en 
-        un archivo aparte*/
+        un archivo aparte
         function par_o_impar(x) {
             if (x % 2)
                 return ("impar");
@@ -27,9 +36,9 @@
 
             let n = parseInt(Math.random() * 10000) + 1;
             document.write(`<p>El número <strong>${n}</strong> es 
-            <strong>${par_o_impar(n)}</strong></>`);
+            <strong>${par_o_impar(n)}</strong></=>`);
 
-        }
+        }*/
     </script>
 </body>
 
