@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcion calcula primo</title>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+    </style>
+</head>
+
+<body>
+    <script>
+        /****** Funcion que permite saber si un número es primo******/
+        //Crea una función que permita saber si un número es primo o no.
+        //Un número es primo si no se puede dividir de forma entera por otro número, sin
+        //contar el uno ni el propio número, dando un resto de cero.
+        //Aprovecha la función creada para crear una página web que escriba los números
+        //primos del 1 al 1000.
+        document.write("<p>1</p><p>2</p>");
+        for (let i = 3; i < 110; i += 2) { //Quitamos los pares porque ya sabemos que no son primos.
+            if (esPrimo(i))
+                document.write(`<p>${i}</p>`);
+        }
+
+        /*
+                let numero = parseInt(prompt("Introduce un número y te diré si es primo o no."));
+
+                if (esPrimo(numero)) alert("El número es primo!!");
+                else alert("Po no, no es primo");
+
+                document.write("<h1>1000 primeros números primos</h1>");
+                for (let i = 2; i < 1000; ++i) {
+                    if (esPrimo(i))
+                        document.write(`<p>${i} </p>`);
+                }*/
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detecta palíndromos</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //FUNCION PARA DETECTAR PALÍNDROMOS
+        //Crea un función. Recibirá un texto y devolverá verdadero si es un palíndromo y falso si no lo es
+        //Para que se consideren bien los palíndromos, se ignoran los signos de puntuación:
+        //espacios, interrogaciones, comas, puntos, etc.). También se ignoran tildes y diéresis (se considera
+        //igual el carácter á que el carácter a) y no se distingue entre mayúsculas y minúsculas)
+
+        //ESTE ES EL MÍO Y FUNCIONA CREO QUE BASTANT BIEN. EL TÍO LO HA HECHO UN POQUITO MÁS ELEGANTE PERO NO HAY TANTA DIFERENCIA.
+
+        let limpia;
+        let frase = prompt("Introduce una frase para saber si es un palíndromo. Deja el campo vacío para terminar.");
+
+        while (frase != null && frase != "") {
+            limpia = limpiaFrase(frase); //Eliminamos cualquier carácter especial.
+            console.log("De momento la frase queda como... " + limpia);
+
+            limpia = pasa_a_minusculas(limpia); //Eliminamos las mayúsculas
+            console.log("De momento la frase queda como... " + limpia);
+
+            limpia = quita_tildes(limpia);
+            console.log("De momento la frase queda como... " + limpia);
+            //console.log("reemplazamos: " + limpia.replace('á', 'a'));
+
+            if (esPalindromo(limpia)) alert("Es un palíndromo");
+            else alert("po no... no es un palíndromo");
+
+            frase = prompt("Introduce una frase para saber si es un palíndromo. Deja el campo vacío para terminar.");
+        }
+
+        if (limpia == null) alert("Aplicación cancelada por el usuario");
+        else alert("Gracias por usar nuestra aplicación");
+    </script>
+</body>
+
+</html>

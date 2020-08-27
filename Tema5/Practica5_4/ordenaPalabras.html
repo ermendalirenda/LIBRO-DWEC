@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenar palabras en orden inverso</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //La aplicación pide palabras hasta Aceptar o Cancelar
+        //Se eliminarán palabras repetidas y además se ordenarán en español, pero
+        //en orden inverso (de la Z a la A).
+
+        //FUNCIONA MÁS O MENOS, MIRA LA DEL PROFE (INDEX.HTML)
+
+        const palabras = new Array();
+        let salir = false;
+        let siguiente = false;
+        do {
+            let texto = prompt("Escribe una palabra y pulsa aceptar. Terminr con el campo vacío.");
+
+            if (!cancelar(texto)) {
+                if (!campoVacio(texto)) {
+                    if (!repetido(texto, palabras)) {
+                        introCadena(texto, palabras);
+                        console.log(`Acabas de introducir: ${texto}`);
+                        console.log(`el array es: ${palabras}`);
+
+                    }
+                } else siguiente = true;
+            } else salir = true;
+        } while (!salir && !siguiente);
+
+        if (!siguiente) ordena(palabras);
+
+        //Lo sacamos por pantalla
+        for (const n of palabras) {
+            document.write(`<p>${n}</p>`);
+        }
+    </script>
+
+</body>
+
+</html>

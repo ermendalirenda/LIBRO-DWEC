@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasa mapas a arrays</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //CREAR MAPA CON REPETICIONES DE ARRAYS
+
+        //Crea una función que reciba un array de palabras
+        //La función devolverá un mapa que contenga como clave cada 
+        //palabra, y el valor es el número de veces que esa palabra aprece en el array
+
+        //Haremos una página web que lea palabras hasta que el usuario cancele o 
+        //deje vacío el cuadro y mostraremos las repeticiones de las palabras.
+
+        let palabras;
+        const array = [];
+        let n = prompt("Introduce una palabra. Deja el texto vacío para terminar.");
+
+        while (n != null && n != "") {
+            array.push(n);
+            console.log("Es array va... " + array);
+            n = prompt("Introduce una palabra. Deja el texto vacío para terminar.");
+        }
+
+        if (n == "") {
+            palabras = array_a_Mapa(array);
+            if (palabras) { //Es decir, si no habido ningún error.
+                console.log(palabras);
+
+                for (const [clave, valor] of palabras) {
+                    document.write(`<p>${clave} -> ${valor}</p>`);
+                }
+            } else
+                console.error("Se esperaba un array");
+
+
+        } else //Hemos pulsado cancelar
+            alert("Sesión cerrada por acción del usuario");
+    </script>
+</body>
+
+</html>

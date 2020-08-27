@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscaminas</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //MAPA BUSCAMINAS
+        //Minas dibujadas y también que se indique en las casillas sin minas, las minas que hay alrededor
+        //Función a la que le pasemos el tablero buscaminas (array de dos dimensiones)y coloque de forma aleatoria las minas
+        //Una función podría recibir el array del tablero, una posición en él y devolver las minas alrededor de esa posición
+        //La función principal invoca a esa segunda recorriendo cada casilla
+        //Otra función recorre el tablero marcando en cada casilla las minas que hay alrededor
+        //Otra función dibuja el tablero en una web
+        //Se pedirá al usuario el tamaño del tablero y las minas a colocar
+
+        var MAPA = new Array();
+
+        //let nFilas = prompt("Escribe número de filas");
+        let nFilas = 10;
+        while (nFilas != null && nFilas < 1) {
+            alert("escriba un número mayor que cero");
+            nFilas = prompt("Escribe número de filas");
+        }
+        if (nFilas != null) {
+            //let nColumnas = prompt("Escribe número de columnas");
+            let nColumnas = 10;
+            while (nColumnas != null && nColumnas < 1) {
+                alert("escriba un número mayor que cero");
+                nColumnas = prompt("Escribe número de columnas");
+            }
+
+            //Creamos el mapa (array bidimensional)
+            MAPA = creaMapa(nFilas, nColumnas);
+            console.log(MAPA);
+
+            //Inicializamos el mapa a 0 en todas las casillas
+            MAPA = iniciaMapa(MAPA);
+            if (MAPA != null) {
+                recorreMapa(MAPA);
+            }
+
+            //Comprobamos el contenido del mapa
+        }
+    </script>
+</body>
+
+</html>

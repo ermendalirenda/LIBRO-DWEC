@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibuja una tabla</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //Funcion que nos permta dibujar una tabla en una página web
+        //Como parámetros indicaremos el número de filas y de columnas con dos números. 
+        //Por defecto cogerá 10f y 4c.
+        //La tabla se crea con un borde negro de 1 píxel entre cada celda, pero un tercer
+        //parámetro permite indicar el color (por defecto será negro). 
+        //El borde exterior
+        //medirá 3 píxeles y siempre será del mismo color que el borde de las celdas.
+        //La tabla ocupará toda la anchura de la página.
+
+        //Usa una función para crear una tabla con borde negro de 10 filas y 4 columnas.
+        //Úsala de nuevo para generar una tabla de 20 filas y 10 columnas, con borde negro
+        //Finalmente, consigue dibujar 10 tablas de 5 filas y 4 columnas que tengan borde verde.
+
+        document.write("<p>Tabla por defecto</p>");
+        creaTabla();
+        document.write("<p>de 20x10 con borde negro por defecto</p>");
+        creaTabla(20, 10);
+        document.write("<p>10 tablas de 10x5 con borde verde</p>");
+
+        for (let i = 0; i < 10; ++i) {
+            /*document.write(`<p>Tabla nº ${i+1}</p>`);
+            document.write(`<p>${creaTabla(10, 5, 'green')}</p>`);*/
+            creaTabla(5, 4, "green");
+        }
+    </script>
+</body>
+
+</html>

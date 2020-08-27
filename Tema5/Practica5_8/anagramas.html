@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagramas</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //FUNCIÓN PARA DETECTAR ANAGRAMAS
+        //Crea una función a la que se le pasen una serie de textos (mínimo 2) y detecte si los mismos son anagramas o no
+        //Un anagrama es una palabra que resulta de trasponer las letras de otra: estanco y acentos
+        //La función devuelve verdadero si todas las palabras pasadas son anagramas de las mismas letras.
+
+        let cadenas = []; //Aquí almacenaremos las cadenas de texto introducidas por el usuario.
+
+        cadenas = iniciaCadenas(cadenas); //Inicializamos el array de cadenas
+
+        console.log("El array va quedando así... " + cadenas);
+
+        if (anagrama(cadenas)) alert("ES UN ANAGRAMA!!");
+        else alert("Po no, no es un anagrama");
+
+        if (cadenas == null) console.error("Ha habido un problema en la entrada de datos.");
+    </script>
+</body>
+
+</html>

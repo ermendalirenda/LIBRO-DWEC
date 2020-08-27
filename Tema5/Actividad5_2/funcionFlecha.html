@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcion Flecha Par o Impar</title>
+</head>
+
+<body>
+    <script>
+        var n = parseInt(prompt("Introduce un número y te diré si es par o impar"));
+
+        console.log("el valor de n es " + n);
+        const nPar = (n) => {
+            return n % 2 == 0 ? true : false;
+
+        }
+
+        if (nPar(n)) console.log("Par"); //liadísimo oprque no llamé a la función con el parámetro n. Es su argumento.
+        else console.log("Impar");
+    </script>
+
+</body>
+
+</html>

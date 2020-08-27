@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci recursivo</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //FUNCION RECURSIVA FIBONACCI
+
+        //La sucesión de números empieza por 0, 1 y el resto son la suma de sus dos anteriores
+        //Es decir, la sucesión es 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, etc
+        //A la función le mandaríamos el número del que queremos saber el valor Fibonacci y nos 
+        //devolvería dicho valor. Así si pasamos el número 10, devolvería 55.
+        //Es mucho más fácil la solución recursiva, pero sería muy interesante hacer también la solución 
+        //no recursiva.
+
+        //RECURSIVIDAD: 1) BUSCA UN CASO BASE (PUEDE HABER VARIOS)
+        //2) TEN CLARO DEL VALOR DEL CUAL PARTIMOS (N=20, N=5...) Y CUYO VALOR (F(N) QUEREMOS AVERIGUAR
+        //3) BUSCA ALGUNA FÓRMULA MATEMÁTICA QUE TE AYUDE Y APLÍCALA EN LA FÓRMULA RECURSIVA.
+
+        let n = prompt("Introduce un número (o nada si desea acabar");
+        while (n != null && n != "") {
+            console.log("entró con el valor n=" + n);
+            alert("El valor fibonacci de " + n + " es " + fibonacciRec(parseInt(n)));
+            n = prompt("Introduce un número (o nada si desea acabar");
+        }
+
+        if (n == null) alert("Aplicación terminada por el usuario");
+        if (n == "")
+            alert("Espero que haya disfrutado de nuestra aplicación");
+    </script>
+</body>
+
+</html>

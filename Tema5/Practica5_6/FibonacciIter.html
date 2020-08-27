@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci iterativo</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        let n = prompt("Introduce un numero. Dejar el campo vacío para terminar");
+
+        while (n != null && n != "") {
+            alert("El valor Fibonacci del número " + n + " es... " + fibonacciIter(parseInt(n)));
+            n = prompt("Introduce un numero. Dejar el campo vacío para terminar");
+        }
+        if (n == null) alert("Aplicación cancelada por el usuario.");
+        else alert("Gracias por usar la aplicación");
+    </script>
+</body>
+
+</html>

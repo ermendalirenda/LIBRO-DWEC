@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tribonacci recursiva e iterativa</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //Basada en Fibonacci, tenemos Tribonacci. en ella cada elemento es la suma de los tres anteriores
+        //la sucesion es 1,1,2,4,7,13,24...
+
+        let n = prompt("Introduce un número. Campo vacío para terminar");
+        while (n != null && n != "") {
+            console.log("El valor Tribonacci del número " + parseInt(n) + " es... " + tribonacci(n));
+
+            n = prompt("Introduce un número. Campo vacío para terminar");
+        }
+        if (n == null) alert("Aplicación anulada por el usuario.");
+        else alert("Gracias por usar nuestra aplicación.");
+
+        console.log("")
+    </script>
+</body>
+
+</html>

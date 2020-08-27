@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrado</title>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <script>
+        //Crea una función llamada Filtro que reciba un array y una función callback. La función
+        //callback se entenderá que tendrá un solo parámetro y que devuelve verdadero o falso depen
+        //diendo del criterio que establezcamos.
+
+        //La función Filtro retornará un nuevo array con los elementos que cumplan los criterios establecidos en la
+        //función callback
+
+        //Pruébala con varios arrays y funciones de filtro que establezcas a medida.
+        const numeros = [];
+
+        let n = prompt("Introduce números. Para acabar deja el campo vacío");
+
+        while (n != null && n != "") {
+            numeros.push(parseInt(n));
+            n = prompt("Introduce números. Para acabar deja el campo vacío");
+        }
+        if (n == null) alert("Aplicación cancelada por el usuario");
+        else {
+
+            console.log("Los números introducidos son: " + numeros);
+
+            filtro(numeros, sacaPares, "pares");
+
+            filtro(numeros, sacaImpares, "impares");
+
+        }
+    </script>
+</body>
+
+</html>

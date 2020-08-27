@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paso por referencia</title>
+</head>
+
+<body>
+    <script>
+        /*Paso por valor. Aparece 19 al final
+                                        var x = 19;
+
+                                        function f(y) {
+                                            y = 20;
+                                        }
+                                        f(x);
+                                        console.log(x);*/
+
+        /*Otro paso por valor. Aparece 20*/
+        var x = 19;
+
+        function f() {
+            x = 20;
+        }
+        f();
+        console.log(x);
+    </script>
+</body>
+
+</html>
