@@ -12,43 +12,51 @@
     <script>
         //MAPA BUSCAMINAS
         //Minas dibujadas y también que se indique en las casillas sin minas, las minas que hay alrededor
-        //Función a la que le pasemos el tablero buscaminas (array de dos dimensiones)y coloque de forma aleatoria las minas
+        //Función a la que le pasemos el tablero buscaminas (array de dos dimensiones)y coloque de forma aleatoria las minas.
         //Una función podría recibir el array del tablero, una posición en él y devolver las minas alrededor de esa posición
         //La función principal invoca a esa segunda recorriendo cada casilla
         //Otra función recorre el tablero marcando en cada casilla las minas que hay alrededor
         //Otra función dibuja el tablero en una web
         //Se pedirá al usuario el tamaño del tablero y las minas a colocar
 
+        let dims = [];
+        let nFilas, nColumnas, nMinas;
+        var mapa; //Variable global
 
-        const N_FILAS = 10;
-        const N_COLUMNAS = 10;
+        //Introducimos los datos
+        dims = introDims();
+        if (!dims) console.log("Aplicación cancelada por el usuario");
+        else {
+            [nFilas, nColumnas, nMinas] = dims;
+            console.log("Filas: " + nFilas + ", columnas: " + nColumnas + ", Minas: " + nMinas);
 
-        const tablero = new Array(N_FILAS);
+            //creamos e inicializamos el mapa (array bidimensional) a 0
 
-        console.log("El array es... " + tablero);
+            initMapa(nFilas, nColumnas); //No nos hace falta enviar mapa pk es una variable global
+            console.log(mapa);
 
-        for (let i = 0; i < N_FILAS; ++i) {
-            for (let j = 0; j < N_COLUMNAS; ++j) {
-                tablero[i] = new Array(N_COLUMNAS);
-            }
-        }
+            //Asignamos las minas
 
-        console.log("El array es... " + tablero);
+            colocaMinas(nMinas);
+            console.log(mapa);
 
-        for (let i = 0; i < N_FILAS; ++i) {
-            for (let j = 0; j < N_COLUMNAS; ++j) {
-                tablero[i][j] = `${i} , ${j}`;
-            }
-        }
-        console.log("El array es... " + tablero);
-        console.log("for..of");
-        for (const celda of tablero) {
-            console.log(celda);
+            /* //Dibuja mapa
 
-        }
-        console.log("for..in");
-        for (const i in tablero[0]) {
-            console.log(`Celda ${i}: ${tablero[0][i]}`);
+             dibujaMapa();
+
+             //Una prueba
+             let x, y;
+             do {
+                 x = prompt("Fila");
+                 y = prompt("Columna");
+
+                 console.log("El número de minas alrededor es... " + pruebaMinas(x, y));
+             } while (x != null);*/
+
+            //Dibuja mapa final
+
+            numeraCasillas();
+            dibujaMapa();
         }
     </script>
 </body>

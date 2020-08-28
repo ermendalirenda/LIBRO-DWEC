@@ -9,13 +9,23 @@
 
 <body>
     <script>
-        let texto1 = "caracola";
+        let valor;
+        do {
+            valor = prompt("Introduce un valor");
+        } while (parseInt(valor) > 4 && parseInt(valor) < 100 && parseInt(valor) != 21);
+
+        console.log("El valor es... " + valor);
+        console.log(isNaN("45"));
+        console.log(parseInt("-244"));
+        if (valor == null) console.log("El usuario ha pulsado cancelar");
+
+        /*let texto1 = "caracola";
         let texto2 = texto1;
 
         texto1 = texto1.replace('c', 'k');
         console.log(texto1 + " , " + texto2);
 
-
+*/
         /*const provincias = new Map();
 
         provincias.set(1, "Álava");
